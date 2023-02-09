@@ -170,6 +170,7 @@ if __name__ == "__main__":
 
     # Read config.
     config = YamlConfig(config_filename)
+    #print("XXXXXXXXXX"+config_filename+"XXXXXXXXX")
     inpaint_rescale_factor = config["inpaint_rescale_factor"]
     policy_config = config["policy"]
 
