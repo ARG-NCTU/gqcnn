@@ -3,7 +3,7 @@ import numpy as np
 from autolab_core import (BinaryImage,ColorImage, DepthImage, RgbdImage)
 
 ##test code###
-#python3  examples/autolabcore_testing_2.py --depth_image data/examples/clutter/phoxi/dex-net_4.0/depth_0.npy --segmask data/examples/clutter/phoxi/dex-net_4.0/segmask_0.png
+#python3  examples/autolabcore_image.py --depth_image data/examples/clutter/phoxi/dex-net_4.0/depth_0.npy --segmask data/examples/clutter/phoxi/dex-net_4.0/segmask_0.png
 
 
 if __name__ == "__main__":
