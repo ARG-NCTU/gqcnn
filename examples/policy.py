@@ -90,6 +90,7 @@ if __name__ == "__main__":
     depth_im_filename = args.depth_image
     segmask_filename = args.segmask
     camera_intr_filename = args.camera_intr
+    print("XXXXXXXX"+camera_intr_filename+"XXXXXXXX")
     model_dir = args.model_dir
     config_filename = args.config_filename
     fully_conv = args.fully_conv
