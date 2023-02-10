@@ -44,7 +44,17 @@ if __name__ == "__main__":
             lies.
 """
 segmask = BinaryImage.open(segmask_filename)
-print(segmask)
+print("@@@@@@@@@@@@@@@@@@@binary_open@@@@@@@@@@@@@@@@@@@")
+print(segmask.data)
+
+segmask_rize = segmask.resize(5)
+print("@@@@@@@@@@@@@@@@@@@binary_resize@@@@@@@@@@@@@@@@@@@")
+print(segmask_rize .data)
+
+segmask_prune_contours = segmask.prune_contours(area_thresh=1000.0, dist_thresh=20, preserve_topology=True)
+print("@@@@@@@@@@@@@@@@@@@segmask_prune_contours @@@@@@@@@@@@@@@@@@@")
+print(segmask_prune_contours.data)
+
 
 #DepthImage
 """A depth image in which individual pixels have a single floating-point depth channel."""
@@ -60,8 +70,35 @@ print(segmask)
 """
 depth_data = np.load(depth_im_filename)
 frame = 'phoxi'
+
 depth_im = DepthImage(depth_data, frame=frame)
-print(depth_im)
+print("@@@@@@@@@@@@@@@@@@@depth_im@@@@@@@@@@@@@@@@@@@")
+print(depth_im.data)
+
+valid_px_mask = depth_im.invalid_pixel_mask().inverse()
+print("@@@@@@@@@@@@@@@@@@@valid_px_mask@@@@@@@@@@@@@@@@@@@")
+print(valid_px_mask .data)
+
+segmask = segmask.mask_binary(valid_px_mask)
+print("@@@@@@@@@@@@@@@@@@@mask_binary@@@@@@@@@@@@@@@@@@@")
+print(segmask.data)
+
+combine_with_depth = depth_im.combine_with(depth_im)
+print("@@@@@@@@@@@@@@@@@@@combine_with_depth@@@@@@@@@@@@@@@@@@@")
+print(combine_with_depth.data)
+
+depth_im_threshold = depth_im.threshold(0.0,100.0)
+print("@@@@@@@@@@@@@@@@@@@depth_im_threshold@@@@@@@@@@@@@@@@@@@")
+print(depth_im_threshold.data)
+
+depth_im_to_binary = depth_im.to_binary(0.0)
+print("@@@@@@@@@@@@@@@@@@@depth_im_to_binary@@@@@@@@@@@@@@@@@@@")
+print(depth_im_to_binary.data)
+
+depth_im_to_color= depth_im.to_color(False)
+print("@@@@@@@@@@@@@@@@@@@depth_im_to_color@@@@@@@@@@@@@@@@@@@")
+print(depth_im_to_color.data)
+
 
 #ColorImage
 """An RGB color image."""
@@ -80,7 +117,14 @@ print(depth_im)
             Either rgb8 or bgr8, depending on the channel storage mode
 """
 color_im = ColorImage(np.zeros([depth_im.height, depth_im.width,3]).astype(np.uint8),frame=frame)
-print(color_im)
+print("@@@@@@@@@@@@@@@@@@@color_im @@@@@@@@@@@@@@@@@@@")
+print(color_im.data)
+
+color_resize = color_im.resize(5)
+print("@@@@@@@@@@@@@@@@@@@color_resize @@@@@@@@@@@@@@@@@@@")
+print(color_resize.data)
+
+
 
 #RgbdImage
 """An image containing a red, green, blue, and depth channel."""
@@ -100,4 +144,22 @@ print(color_im)
         ------
 """
 rgbd_im = RgbdImage.from_color_and_depth(color_im, depth_im)
-print (rgbd_im)
+print("@@@@@@@@@@@@@@@@@@@rgbd_im@@@@@@@@@@@@@@@@@@@")
+print (rgbd_im.data)
+
+rgbd_color = rgbd_im.color
+print("@@@@@@@@@@@@@@@@@@@rgbd_color@@@@@@@@@@@@@@@@@@@")
+print(rgbd_color.data)
+
+rgbd_depth = rgbd_im.depth
+print("@@@@@@@@@@@@@@@@@@@rgbd_depth@@@@@@@@@@@@@@@@@@")
+print(rgbd_depth.data)
+
+rgbd_resize = rgbd_im.resize(10)
+print("@@@@@@@@@@@@@@@@@@@rgbd_resize@@@@@@@@@@@@@@@@@@@")
+print(rgbd_resize.data)
+
+rgbd_crop = rgbd_im.crop(5,5)
+print("@@@@@@@@@@@@@@@@@@@rgbd_crop@@@@@@@@@@@@@@@@@@@")
+print(rgbd_crop.data)
+
