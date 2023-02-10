@@ -9,7 +9,7 @@ from autolab_core import (BinaryImage,ColorImage, DepthImage, RgbdImage)
 if __name__ == "__main__":
     # Parse args.
     parser = argparse.ArgumentParser(
-        description="Run a grasping policy on an example image")
+        description="Run a testing on an example image")
     parser.add_argument("--segmask",
                     type=str,
                     default=None,
